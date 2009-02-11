@@ -98,5 +98,5 @@ module NeverBlock
   end
 
 end
-
+puts "Using Neverblock"
 NB = NeverBlock
