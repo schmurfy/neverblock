@@ -109,6 +109,7 @@ class ActiveRecord::ConnectionAdapters::ConnectionPool
            else
              Fiber.yield @fiber_queue << Fiber.current             
            end
+    Fiber.current[:callbacks] ||= []
     Fiber.current[:callbacks] << self.method(:process_queue)
     Fiber.current[:current_pool_key] = current_pool_id
     conn
