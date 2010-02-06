@@ -70,6 +70,7 @@ end
 require 'never_block/extensions/fiber_extensions'
 require 'never_block/pool/fiber_pool'
 require 'never_block/pool/fibered_connection_pool'
+require 'core/kernel'
 
 module NeverBlock
 
