@@ -2,15 +2,12 @@ $:.unshift File.expand_path('..')
 require 'lib/neverblock'
 
 describe Fiber do
-  before(:all) do
+  before do
     @fiber = Fiber.new {puts "I'm a new fiber"}
   end
 
-  it "should be able to set fiber local variable" do
+  it "should be able to set and retrieve fiber local variable" do
     @fiber[:x] = "wow"
-  end
-
-  it "should be able to retrieve an already set fiber local variable" do
     @fiber[:x].should == "wow"
   end
 
@@ -18,7 +15,7 @@ describe Fiber do
     @fiber[:y].should == nil
   end
 
-  after(:all) do
+  after do
     @fiber = nil
   end
 end

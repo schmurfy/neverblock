@@ -2,7 +2,7 @@ $:.unshift File.expand_path('..')
 require 'lib/neverblock'
 
 describe NeverBlock::Pool::FiberPool do
-  before(:each) do
+  before do
     @fiber_pool = NeverBlock::Pool::FiberPool.new(10)
   end
 
@@ -52,7 +52,7 @@ describe NeverBlock::Pool::FiberPool do
     @fiber_pool.instance_variable_get(:@queue).length.should == 0
   end
 
-  after(:each) do
+  after do
     @fiber_pool = nil
   end
 
