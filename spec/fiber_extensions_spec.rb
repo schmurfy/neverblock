@@ -1,5 +1,5 @@
-$:.unshift File.expand_path('..')
-require 'lib/neverblock'
+$:.unshift File.expand_path(File.join(File.dirname(__FILE__), '../lib'))
+require 'never_block'
 
 describe Fiber do
   before do

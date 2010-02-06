@@ -1,11 +1,11 @@
-$:.unshift File.expand_path('..')
+$:.unshift File.expand_path(File.join(File.dirname(__FILE__), '../lib'))
+
 gem 'activerecord', '2.3.4'
 gem 'activesupport', '2.3.4'
 require 'active_support'
 require 'active_record'
 
-require 'lib/neverblock'
-require 'lib/neverblock-mysql'
+require 'neverblock-mysql'
 
 require 'em-spec/bacon'
 
