@@ -8,7 +8,7 @@ module NeverBlock
         if EM.reactor_running?
 					connectionHandler = mode == :write ? EMWriteConnectionHandler : EMReadConnectionHandler
           @fiber = Fiber.current
-          @em_connection = EM::attach(self,connectionHandler,self)
+          @em_connection = EM::watch(self,connectionHandler,self) { |c| c.notify_readable = true }
 					Fiber.yield
 					@em_connection.detach
 	      else
