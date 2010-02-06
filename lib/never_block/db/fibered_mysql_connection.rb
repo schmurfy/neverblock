@@ -30,9 +30,12 @@ module NeverBlock
       # the context of a fiber. One that have the value :neverblock set to true.
       # All neverblock IO classes check this value, setting it to false will force
       # the execution in a blocking way.
-      def query(sql)        
+      def query(sql)
         if NB.event_loop_available? && NB.neverblocking?
-          raise ::NB::NBError.new("FiberedMysqlConnection: The running fiber is attached to a connection other than the current one") if (c = Fiber.current[Fiber.current[:current_pool_key]]) && c != self
+          if (c = Fiber.current[Fiber.current[:current_pool_key]]) && c != self
+            raise ::NB::NBError.new("FiberedMysqlConnection: The running fiber is attached to a connection other than the current one")
+          end
+          
           begin
             send_query sql
             Fiber.yield register_with_event_loop
