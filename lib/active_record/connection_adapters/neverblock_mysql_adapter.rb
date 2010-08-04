@@ -23,7 +23,7 @@ class ActiveRecord::ConnectionAdapters::NeverBlockMysqlAdapter < ActiveRecord::C
   def connect
     #initialize the connection pool
     unless @connection
-      @connection = ::NB::DB::PooledDBConnection.new(@connection_options[0]) do
+      @connection = ::NB::DB::PooledDBConnection.new(@config[:pool]) do
         conn = ::NB::DB::FMysql.init
         encoding = @config[:encoding]
         if encoding
