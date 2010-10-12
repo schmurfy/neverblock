@@ -1,4 +1,4 @@
-require 'activesupport'
+require 'active_support'
 require 'never_block/frameworks/activerecord'
 require 'active_record/connection_adapters/mysql_adapter'
 require 'neverblock-mysql'
