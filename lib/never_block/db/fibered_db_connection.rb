@@ -13,7 +13,7 @@ module NeverBlock
           # When there's no previous em_connection
           key = em_connection_with_pool_key
           unless @fiber[key]
-            @fiber[key] = EM.(socket,EMConnectionHandler,self){ |c| c.notify_readable = true }
+            @fiber[key] = EM.watch(socket,EMConnectionHandler,self){ |c| c.notify_readable = true }
             @fiber[:callbacks] << self.method(:unregister_from_event_loop)
             @fiber[:em_keys] << key
           end
